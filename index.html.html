@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chingón Cafetería — Carta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F6EFDF;
+    --paper-deep: #EFE4CC;
+    --ink: #2A2018;
+    --ink-soft: #5C4E3E;
+    --marigold: #DB9A2C;
+    --brick: #B34A2C;
+    --indigo: #2E4560;
+    --line: rgba(42, 32, 24, 0.16);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* HERO */
+  header.hero {
+    background: var(--indigo);
+    color: var(--paper);
+    padding: 56px 24px 44px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header.hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--marigold) 0 18px,
+      var(--brick) 18px 36px
+    );
+  }
+
+  .hero-eyebrow {
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    color: var(--marigold);
+    margin: 0 0 10px;
+    font-weight: 500;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(42px, 11vw, 64px);
+    font-weight: 700;
+    margin: 0;
+    line-height: 0.95;
+  }
+
+  .hero p.sub {
+    margin: 16px auto 0;
+    max-width: 30ch;
+    font-size: 16px;
+    color: rgba(246, 239, 223, 0.82);
+  }
+
+  /* NAV */
+  nav.jump {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 16px 24px;
+    margin: 0 -24px;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid var(--line);
+    scrollbar-width: none;
+  }
+  nav.jump::-webkit-scrollbar { display: none; }
+
+  nav.jump a {
+    flex: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 7px 14px;
+    border-radius: 100px;
+    border: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  nav.jump a.active {
+    background: var(--indigo);
+    color: var(--paper);
+    border-color: var(--indigo);
+  }
+
+  /* SECTIONS */
+  section.menu-block {
+    padding-top: 48px;
+    scroll-margin-top: 64px;
+  }
+
+  .block-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+
+  .block-head h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--brick);
+  }
+
+  .block-head .count {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .item:last-child { border-bottom: none; }
+
+  .item-name {
+    font-weight: 600;
+    font-size: 16.5px;
+  }
+
+  .item-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-top: 3px;
+    max-width: 42ch;
+  }
+
+  .item-price {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--indigo);
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--marigold);
+    border: 1px solid var(--marigold);
+    border-radius: 100px;
+    padding: 1px 8px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  footer {
+    margin-top: 64px;
+    text-align: center;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+
+  footer p {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 4px 0;
+  }
+
+  footer .thanks {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--brick);
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 420px) {
+    .item-desc { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <p class="hero-eyebrow">Café de especialidad · Comida casera</p>
+  <h1>Chingón<br>Cafetería</h1>
+  <p class="sub">Buen café, buena mesa, sin apuro.</p>
+</header>
+
+<nav class="jump" id="jumpnav">
+  <a href="#cafe">Café</a>
+  <a href="#te-otros">Té &amp; otros</a>
+  <a href="#desayunos">Desayunos</a>
+  <a href="#sandwiches">Sándwiches</a>
+  <a href="#dulce">Dulce</a>
+</nav>
+
+<div class="wrap">
+
+  <section class="menu-block" id="cafe">
+    <div class="block-head">
+      <h2>Café</h2>
+      <span class="count">Grano propio, tueste medio</span>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Espresso</div>
+        <div class="item-desc">Doble, en taza de porcelana</div>
+      </div>
+      <div class="item-price">$1.800</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Cortado</div>
+      </div>
+      <div class="item-price">$2.100</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Flat white</div>
+        <div class="item-desc">Con leche entera vaporizada</div>
+      </div>
+      <div class="item-price">$2.600</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Latte<span class="tag">frío disponible</span></div>
+      </div>
+      <div class="item-price">$2.700</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Americano</div>
+      </div>
+      <div class="item-price">$1.900</div>
+    </div>
+  </section>
+
+  <section class="menu-block" id="te-otros">
+    <div class="block-head">
+      <h2>Té &amp; otros</h2>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Té de hebras</div>
+        <div class="item-desc">Verde, negro o manzanilla</div>
+      </div>
+      <div class="item-price">$1.700</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Chocolate caliente</div>
+      </div>
+      <div class="item-price">$2.400</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Limonada de jengibre</div>
+      </div>
+      <div class="item-price">$2.200</div>
+    </div>
+  </section>
+
+  <section class="menu-block" id="desayunos">
+    <div class="block-head">
+      <h2>Desayunos</h2>
+      <span class="count">Hasta las 12hs</span>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Tostado clásico</div>
+        <div class="item-desc">Pan de campo, manteca, mermelada casera</div>
+      </div>
+      <div class="item-price">$3.200</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Huevos revueltos</div>
+        <div class="item-desc">Con pan tostado y palta</div>
+      </div>
+      <div class="item-price">$4.100</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Bowl de yogur</div>
+        <div class="item-desc">Granola casera, frutas de estación</div>
+      </div>
+      <div class="item-price">$3.600</div>
+    </div>
+  </section>
+
+  <section class="menu-block" id="sandwiches">
+    <div class="block-head">
+      <h2>Sándwiches</h2>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Jamón y queso</div>
+        <div class="item-desc">Pan de campo tostado</div>
+      </div>
+      <div class="item-price">$4.500</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Palta y tomate</div>
+        <div class="item-desc">Con huevo poché, opcional</div>
+      </div>
+      <div class="item-price">$4.800</div>
+    </div>
+  </section>
+
+  <section class="menu-block" id="dulce">
+    <div class="block-head">
+      <h2>Dulce</h2>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Medialuna</div>
+      </div>
+      <div class="item-price">$1.200</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Budín de limón</div>
+      </div>
+      <div class="item-price">$2.300</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Alfajor de maicena</div>
+        <div class="item-desc">Relleno de dulce de leche</div>
+      </div>
+      <div class="item-price">$1.900</div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="thanks">Gracias por venir</p>
+    <p>Chingón Cafetería · Escaneá de nuevo si querés volver a ver la carta</p>
+  </footer>
+
+</div>
+
+<script>
+  const links = document.querySelectorAll('nav.jump a');
+  const sections = document.querySelectorAll('section.menu-block');
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const match = document.querySelector(`nav.jump a[href="#${entry.target.id}"]`);
+        if (match) match.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>
